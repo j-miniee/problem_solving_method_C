@@ -1,41 +1,20 @@
 #include <stdio.h>
 
-void reverse() {
-	int ch;
+int comb(int n, int r) {
 
-	if ((ch = getchar()) != '\n') {
-		reverse();
-		putchar(ch);
-	}
+	if (r == 0 || r == n)
+		return 1;
+	else
+		return comb(n - 1, r - 1) + comb(n - 1, r);
+
 }
 
-void echo1() {
-	int ch;
+int main(void) 
+{
+	int C10_5;
 
-	while ((ch = getchar()) != '\n') {
-		putchar(ch);
-	}
-}
+	C10_5 = comb(10, 5);
+	printf("%d", C10_5);
 
-void echo2() {
-	int ch;
-
-	if ((ch = getchar()) != '\n') {
-		putchar(ch);
-		echo2();
-	}
-}
-
-int main(void) {
-	printf("Enter a string and press enter: ");
-	echo1();
-
-	printf("\nEnter a string and press enter: ");
-	echo2();
-
-	printf("\nEnter a string and press enter: ");
-	reverse();
-	printf("\n");
-
-	return;
+	return 0;
 }
