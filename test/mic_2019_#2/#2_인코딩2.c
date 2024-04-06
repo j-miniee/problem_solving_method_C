@@ -38,5 +38,4 @@ int main() {
 	else
 		printf("0");
 
-	
 }
