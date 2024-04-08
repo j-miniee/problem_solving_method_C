@@ -18,7 +18,7 @@ int main(void) {
 
 void pick(char item[], int n, int bucket[], int m, int toPick) {
 	int i, lastIdx;
-	if (toPick == 0) { //´Ù »Ì¾ÒÀ» ¶§ 
+	if (toPick == 0) { //ë‹¤ ë½‘ì•˜ì„ ë•Œ 
 		int sum = 0;
 		for (i = 0; i < m; i++) {
 			if (item[bucket[i]] == '+')
@@ -34,8 +34,9 @@ void pick(char item[], int n, int bucket[], int m, int toPick) {
 	}
 	lastIdx = m - toPick - 1;
 
-	for (i = 0; i < n; i++) { //Áßº¹¼ø¿­ÀÌ¶ó 0ºÎÅÍ ½ÃÀÛÇØ¾ß ÇÔ.
-		bucket[lastIdx + 1] = i; //lastIdx´Â ÇöÀç »Ì¾Æ¾ß ÇÏ´Â À§Ä¡ °è»êÇÏ±â À§ÇØ.
+	for (i = 0; i < n; i++) { //ì¤‘ë³µìˆœì—´ì´ë¼ 0ë¶€í„° ì‹œì‘í•´ì•¼ í•¨.
+		bucket[lastIdx + 1] = i; //lastIdxëŠ” í˜„ì¬ ë½‘ì•„ì•¼ í•˜ëŠ” ìœ„ì¹˜ ê³„ì‚°í•˜ê¸° ìœ„í•´.
+		// 	í˜„ì¬ ìœ„ì¹˜ì— ë¶€í˜¸ì˜ ì¸ë±ìŠ¤ ì €ì¥
 		pick(item, n, bucket, m, toPick - 1);
 	}
 }
