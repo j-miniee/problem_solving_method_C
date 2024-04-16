@@ -19,9 +19,9 @@ int main(void) {
 }
 
 void pick(int item[], int n, int bucket[], int m, int toPick, int target_money) {
-	int i, lastIdx, smallest;
+	int i, lastIdx, smallest, sum;
 	if (toPick == 0) { //다 뽑았을 때 	
-		int sum = 0;
+		sum = 0;
 		for (i = 0; i < m; i++) {
 			if (item[bucket[i]] != 0)
 				sum += item[bucket[i]];
@@ -41,6 +41,21 @@ void pick(int item[], int n, int bucket[], int m, int toPick, int target_money) 
 		smallest = 0;
 	else
 		smallest = bucket[lastIdx];
+
+	for (i = 0; i <= lastIdx; i++) {
+		sum += item[bucket[i]];
+	}
+
+	if (sum == target_money) {
+		for (i = 0; i <= lastIdx; i++)
+			printf("%d ", item[bucket[i]]);
+		printf("\n");
+		return; //더 뽑지 않도록(재귀함수 가지 못하게) 막는다. 
+	}
+
+	else if (sum > target_money) {
+		return;
+	}
 
 	for (i = smallest; i < n; i++) { //중복조합은 마지막에 뽑히는 얘 알고, 후보 아이템의 min 값 담을 변수 필요.
 		bucket[lastIdx + 1] = i; //lastIdx는 현재 뽑아야 하는 위치 계산하기 위해.

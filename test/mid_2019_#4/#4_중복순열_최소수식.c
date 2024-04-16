@@ -1,9 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-void pick(char sign[], int n, int bucket[], int m, int toPick, int* cnt, char item[]);
+void pick(char sign[], int n, int bucket[], int m, int toPick, int* cnt, int item);
 
 int main() {
 	int N;
@@ -13,18 +12,17 @@ int main() {
 	int n = 2;
 
 	int* bucket = (int*)malloc(sizeof(int) * N);
-	char* item = (char*)malloc(sizeof(char) * (N+1));
 
 	int cnt = 0;
-	pick(sign, n, bucket, N, N, &cnt, item);
+	for(int i = 1; i <= N; i++)
+		pick(sign, n, bucket, i, i, &cnt, N);
 
 	printf("%d", cnt);
 
 	free(bucket);
-	free(item);
 }
 
-void pick(char sign[], int n, int bucket[], int m, int toPick, int* cnt, char item[]) {
+void pick(char sign[], int n, int bucket[], int m, int toPick, int* cnt, int item) {
 	int i, j, lastIdx;
 
 	if (toPick == 0) {
@@ -35,32 +33,9 @@ void pick(char sign[], int n, int bucket[], int m, int toPick, int* cnt, char it
 				sum += (i + 1);
 			else if (sign[bucket[i]] == '-')
 				sum -= (i + 1);
-
-			if (sum == m) {
-				if ((*cnt) == 0) {
-					for (j = 0; j <= i; j++) {
-						item[j] = bucket[j] + '0';
-					}
-					item[j] = '\0';
-					(*cnt)++;
-					//printf("Ã¹ ¹øÂ°:%s\n", item);
-				}
-				else {
-					char* check = (char*)malloc(sizeof(char) * (m+1));
-					for (j = 0; j <= i; j++) {
-						check[j] = bucket[j] + '0';
-					}
-					check[j] = '\0';
-					if (strcmp(check, item) != 0) {
-						(*cnt)++;
-						strcpy(item, check);
-						//printf("%s\n", item);
-					}
-					free(check);
-				}
-			}
 		}
-
+		if (sum == item)
+			(*cnt)++;
 		return;
 	}
 

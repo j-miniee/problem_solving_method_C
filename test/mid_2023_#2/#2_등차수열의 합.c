@@ -33,10 +33,22 @@ int main(void) {
 		scanf("%d", &B[i]);
 	}
 
+	int* C = (int*)malloc(sizeof(int) * Nb);
 	ascending_order(A, Na);
 	ascending_order(B, Nb);
+	
+	for (i = 0; i < Na; i++) {
+		C[i] = A[i];
+	}
 
-	for (j = 0; j < Na; j++) {
+	k = 0;
+	for (i = Na; i < Nb; i++) {
+		C[i] = B[k++];
+	}
+	ascending_order(C, Nb);
+
+
+	/*for (j = 0; j < Na; j++) {
 		for (i = 0; i < Nb; i++) {
 			if (B[i] > A[j]) {
 				for (k = Nb - 1; k > i; k--) {
@@ -49,33 +61,31 @@ int main(void) {
 				break;
 		}
 		if (i == Nb && B[i - 1] < A[j]) {
-			B[Nb-1] = A[j];
+			for (k = 1; k < i; k++)
+				B[k] = B[k - 1];
+			//B[Nb-1] = A[j];
 		}
 	}
+	*/
 
 	for (int m = 0; m < Nb; m++) {
-		printf("%d ", B[m]);
+		printf("%d ", C[m]);
 	}
 	printf("\n");
 
-	differ = B[1] - B[0];
+	differ = C[1] - C[0];
 	for (i = 1; i < Nb - 1; i++) {
-		int num = B[i + 1] - B[i];
+		int num = C[i + 1] - C[i];
 		if (num != differ) {
 			printf("-1");
-			free(A);
-			free(B);
 			return 0;
 		}
 	}
 
 	int total = 0;
 	for (i = 0; i < Nb; i++)
-		total += B[i];
+		total += C[i];
 	printf("%d", total);
-
-	free(A);
-	free(B);
 
 	return 0;
 }
