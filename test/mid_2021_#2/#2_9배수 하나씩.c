@@ -1,41 +1,37 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h >
+
+int reverse(int n, int* reverse_num) {//포인터로 주소 받아서 reverse
+	int cnt = 0;
+	int number, i;
+
+	number = n; //891
+	while (number != 0) {
+		number = number / 10; 
+		cnt++; 
+	}
+
+	number = n;
+	i = cnt;
+	while (number != 0) {
+		i--;
+		reverse_num[i] = number % 10; //reverse 시킴!! 
+		number = number / 10;
+	}
+	return cnt;
+
+}
 
 int main() {
-	int n;
-
+	int n, digit, i;
+	int reverse_num[10] = { 0 };
 	scanf("%d", &n);
 
-	int* p = (int*)malloc(sizeof(int) * 100);
+	n = n * 9;
 
-	int i = 0;
-	int num = n;
-	int flag = 0;
-	while (num != 0) {
-		int sum = (num % 10) * 9 + flag;
-		if (sum >= 10) {
-			p[i++] = sum % 10;
-			if (num / 10 == 0) {
-				p[i] = sum / 10;
-				break;
-			}
-			else {
-				flag = sum / 10;
-			}
-		}
-		else {
-			flag = 0;
-			p[i++] = sum;
-		}
-		num = num / 10;
+	digit = reverse(n, reverse_num);
+	for (i = 0; i < digit; i++) {
+		printf("%d ", reverse_num[i]);
 	}
-
-	for (int j = i; j >= 0; j--) { 
-		printf("%d ", p[j]);
-	}
-
-	free(p);
-
 }
