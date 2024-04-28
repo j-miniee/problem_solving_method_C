@@ -14,6 +14,14 @@ void pick(char* item[], int n, int* bucket, int m, int toPick)
 		return;
 	}
 
+	/*
+	5
+11 22 17 34 52
+
+6
+13 40 20 17 52 26
+	*/
+
 	lastIdx = m - toPick - 1;
 
 	for (i = 0; i < n; i++) {
