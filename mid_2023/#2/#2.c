@@ -3,25 +3,15 @@
 #include <stdlib.h>
 
 int get_reverse_number(int n, int* arr) {
-	//*arr 포인터(주소 가져와)
-	//n은 배수인 수, *arr는 그 주소
 	int count = 0;
 	int number, i;
 
 	number = n;
-	while (number != 0) { // 3의 배수의 자리수 구함
+	while (number != 0) {
 		count++;
 		number = number / 10;
 	}
 
-	number = n;
-	i = count;
-	while (number != 0) {// 뒤에부터 채워넣음
-		i--;
-		arr[i] = number % 10;
-		number = number / 10;
-	}
-	//printf("%d\n", count);
 	return count; //자리수 반환
 }
 
@@ -35,10 +25,8 @@ int main() {
 
 	for (i = K; i < N; i += K) {
 		digit +=  get_reverse_number(i, reverse_number);
-		
 	}
 
 	printf("%d", digit);
+
 }
-
-

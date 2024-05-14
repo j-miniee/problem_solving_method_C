@@ -2,63 +2,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void inSequence(int a[], int new[], int size) {
-	int i, j, lastIdx;
-	int new_idx;
+void makeSequence(int a, int* new, int size) {
+	int i, num;
 
-	for(i = 0; i <size; i++ ){
-		int flag = 1;
-		new_idx = 0;
-		new[new_idx++] = a[i];
-		
-		//printf("a = %d, i = %d\n", a[i], i);
-		while (new_idx < size) {
-			if (new[new_idx - 1] % 2 == 0) {
-				int n2 = a[i] / 2;
+	num = a;
+	new[0] = num;
 
-				for (int k = 0; k < size; k++) {
-					if (n2 == a[k])
-						flag = 0; //같은거 있으니까 넣을 수 있음
-				}
-				if (flag == 0) {
-					if (new_idx + 1 <= size)
-						new_idx++;
-					new[new_idx] = n2;
-					//printf("new(n2) = %d, new_idx = %d\n", new[new_idx], new_idx);
-					if (new_idx == size)
-						return;
-				}
-				if (flag == 1) {
-					break;
-				}
-
-			}
-			else {
-				int n3 = a[i] * 3 + 1;
-
-				for (int k = 0; k < size; k++) {
-					if (n3 == a[k])
-						flag = 0; //같은거 있으니까 넣을 수 있음
-				}
-				if (flag == 0) {
-					if (new_idx + 1 <= size)
-						new_idx++;
-
-					new[new_idx] = n3;
-	
-					if (new_idx == size)
-						return;
-					//printf("new(n3) = %d, new_idx = %d\n", new[new_idx], new_idx);
-				}
-				if (flag == 1) {
-					break;
-				}
-			}
+	for (i = 1; i < size; i++) {
+		if (num % 2 == 0) {
+			num = num / 2;
 		}
-		
+		else {
+			num = num * 3 + 1;
+		}
+		new[i] = num;
 	}
+}
+int checkSequence(int a[], int* new, int size) {
+	int a_idx, new_idx;
 
-	
+	for (new_idx = 0; new_idx < size; new_idx++) {
+		for (a_idx = 0; a_idx < size; a_idx++) {
+			if (new[new_idx] == a[a_idx])
+				break;
+		}
+		if (a_idx == size)
+			return 0;
+	}
+	return 1;
+}
+
+void inSequence(int a[], int *new, int size) {
+	int i;
+
+	for (i = 0; i < size; i++) {
+		makeSequence(a[i], new, size);
+		int check = checkSequence(a, new, size);
+
+		if (check == 1) {
+			return;
+		}
+	}
 }
 
 int main() {

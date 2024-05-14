@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*void pick(int* card, int n, int* bucket, int m, int toPick, int* cnt);
+void pick(int* card, int n, int* bucket, int m, int toPick, int* cnt);
 
 int main() {
 	int n;
@@ -14,7 +14,7 @@ int main() {
 		scanf("%d", &card[i]);
 	}
 	int cnt = 0;
-	pick(card, n, bucket, n, n, &cnt);//카드 3장 있으면 2장만 뽑음
+	pick(card, n, bucket, n, n, &cnt); //카드 3장 있으면 2장만 뽑음
 
 	printf("%d", cnt);
 
@@ -54,7 +54,7 @@ void pick(int *card, int n, int *bucket, int m, int toPick, int *cnt) {
 		}
 	}
 }
-*/
+/*
 int pick(int item[], int n, int bucket[], int m, int toPick, int sum);
 
 int main() {
@@ -116,3 +116,4 @@ int pick(int item[], int n, int bucket[], int m, int toPick, int sum) {
 	}
 	return count;
 }
+*/

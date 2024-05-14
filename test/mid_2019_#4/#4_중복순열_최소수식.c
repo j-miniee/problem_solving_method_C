@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-/*
+
 void pick(char sign[], int n, int bucket[], int m, int toPick, int* cnt, int item);
 
 int main() {
@@ -41,13 +41,13 @@ void pick(char sign[], int n, int bucket[], int m, int toPick, int* cnt, int ite
 
 	lastIdx = m - toPick - 1;
 
-
 	for (i = 0; i < n; i++) {
 		bucket[lastIdx + 1] = i;
 		pick(sign, n, bucket, m, toPick - 1, cnt, item);
 	}
+
 }
-*/
+/*
 int pick(char item[], int n, int bucket[], int m, int toPick, int target);
 
 int main() {
@@ -95,3 +95,4 @@ int pick(char item[], int n, int bucket[], int m, int toPick, int target) {
 
 	return count;
 }
+*/

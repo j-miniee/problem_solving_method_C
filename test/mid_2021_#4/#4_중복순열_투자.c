@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*void pick(char sign[], int n, int item[], int bucket[], int m, int toPick, int* cnt);
+void pick(char sign[], int n, int item[], int bucket[], int m, int toPick, int* cnt);
 
 int main() {
 	int stu;
@@ -57,7 +57,7 @@ void pick(char sign[], int n, int item[], int bucket[], int m, int toPick, int *
 	}
 	
 }
-*/
+/*
 int pick(char item[], int n, int bucket[], int m, int toPick, int* money);
 
 int main() {
@@ -83,10 +83,10 @@ int pick(char item[], int n, int bucket[], int m, int toPick, int* money) {
 	int i, lastIndex, count;
 	if (toPick == 0) {
 		int sum = 0;
-		/*for(i=0; i<m; i++) {
+		for(i=0; i<m; i++) {
 			printf("%c ", item[bucket[i]]);
 		}
-		printf("\n");*/
+		printf("\n");
 
 		for (i = 0; i < m; i++) {
 			if (item[bucket[i]] == '+')
@@ -115,3 +115,4 @@ int pick(char item[], int n, int bucket[], int m, int toPick, int* money) {
 
 	return count;
 }
+*/
