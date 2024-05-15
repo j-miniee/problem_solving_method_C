@@ -16,66 +16,31 @@ void swap(struct Student* arr, int i, int j) {
 	arr[j] = temp;
 }
 
-int partition(struct Student* arr, int p, int r, int option) {
-	//id만 오름차순
+int partition(struct Student* arr, int p, int r) {
 	int i, j;
 	struct Student pivot;
 	pivot = arr[r]; 
 
 	i = p - 1; //시작 바로 왼쪽
 
-	switch (option) {
-	case 1:
-		for (j = p; j < r; j++) {
-			if (arr[j].korean >= pivot.korean) {
-				i++;
-				swap(arr, i, j);
-			}
+	for (j = p; j < r; j++) {
+		if (arr[j].korean >= pivot.korean) {
+			i++;
+			swap(arr, i, j);
 		}
-		swap(arr, i + 1, r);
-		return i + 1;
-
-	case 2:
-		for (j = p; j < r; j++) {
-			if (arr[j].math >= pivot.math) {
-				i++;
-				swap(arr, i, j);
-			}
-		}
-		swap(arr, i + 1, r);
-		return i + 1;
-
-	case 3:
-		for (j = p; j < r; j++) {
-			if (arr[j].english >= pivot.english) {
-				i++;
-				swap(arr, i, j);
-			}
-		}
-		swap(arr, i + 1, r);
-		return i + 1;
-
-	case 4:
-		for (j = p; j < r; j++) {
-			if (arr[j].id <= pivot.id) {
-				i++;
-				swap(arr, i, j);
-			}
-		}
-		swap(arr, i + 1, r);
-		return i + 1;
-
 	}
+	swap(arr, i + 1, r);
+	return i + 1;
+
 }
 
-void quickSort(struct Student* arr, int p, int r, int option) {
+void quickSort(struct Student* arr, int p, int r) {
 	if (p < r) {
-		int q = partition(arr, p, r, option);
-		quickSort(arr, p, q - 1, option);
-		quickSort(arr, q + 1, r, option);
+		int q = partition(arr, p, r);
+		quickSort(arr, p, q - 1);
+		quickSort(arr, q + 1, r);
 	}
 }
-
 
 int main()
 {
@@ -98,18 +63,11 @@ int main()
 		printf("학번 : %d\t영어 : %d\t수학 : %d\t국어: %d\n", s[i].id, s[i].english, s[i].math, s[i].korean);
 	}
 
-	do {
-		printf("\n");
-		printf("정렬 기준 선택(1: 국어, 2: 수학, 3: 영어, 4: id(오름차순), 0: 끝내기) : ");
-		scanf("%d", &option);
-
-		if (option != 0) {
-			quickSort(s, 0, n - 1, option);
-			for (i = 0; i < n; i++) {
-				printf("학번 : %d\t영어 : %d\t수학 : %d\t국어 : %d\n", s[i].id, s[i].english, s[i].math, s[i].korean);
-			}
-		}
-	} while (option != 0);
+	printf("국어 내림차순 정렬\n");
+	quickSort(s, 0, n - 1);
+	for (i = 0; i < n; i++) {
+		printf("학번 : %d\t영어 : %d\t수학 : %d\t국어 : %d\n", s[i].id, s[i].english, s[i].math, s[i].korean);
+	}
 
 	free(s);
 }
