@@ -1,11 +1,11 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> 
 
 void find_max(int* bucket, char* str1, char* str2, int len1, int len2, int* max) {
 	int i, sum, b_idx, n1, n2;
-	char* a1 = (char*)malloc(sizeof(char) * len1); 
+	char* a1 = (char*)malloc(sizeof(char) * len1);
 	char* a2 = (char*)malloc(sizeof(char) * len2);
 
 	for (i = 0; i < len1; i++) {
@@ -38,9 +38,9 @@ void pick(int* bucket, int n, int m, int toPick, char* str1, char* str2, int len
 		return;
 	}
 
-	lastIdx = m - toPick - 1; //°¡Àå ÃÖ±Ù¿¡ »ÌÈù ¼ö°¡ ÀúÀåµÈ À§Ä¡ÀÇ ÀÎµ¦½º
+	lastIdx = m - toPick - 1; //ê°€ìž¥ ìµœê·¼ì— ë½‘ížŒ ìˆ˜ê°€ ì €ìž¥ëœ ìœ„ì¹˜ì˜ ì¸ë±ìŠ¤
 
-	for (i = 1; i <= n; i++) { 
+	for (i = 1; i <= n; i++) {
 		int flag = 0;
 		for (int j = 0; j <= lastIdx; j++) {
 			if (i == bucket[j]) {
@@ -48,9 +48,9 @@ void pick(int* bucket, int n, int m, int toPick, char* str1, char* str2, int len
 				break;
 			}
 		}
-		if (flag == 0) { //bucket¿¡ °°Àº ¼ö ¾øÀ¸¸é
-			bucket[lastIdx + 1] = i;// bucketÀº ÀÎµ¦½º ³Ö´Â °÷
-			pick(bucket, n,  m, toPick - 1, str1, str2, len1, len2, max);
+		if (flag == 0) { //bucketì— ê°™ì€ ìˆ˜ ì—†ìœ¼ë©´
+			bucket[lastIdx + 1] = i;// bucketì€ ì¸ë±ìŠ¤ ë„£ëŠ” ê³³
+			pick(bucket, n, m, toPick - 1, str1, str2, len1, len2, max);
 		}
 	}
 }

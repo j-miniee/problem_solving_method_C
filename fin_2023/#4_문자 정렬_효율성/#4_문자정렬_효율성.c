@@ -20,7 +20,7 @@ int partition(char A[], int p, int r) {
 	int pivot;
 	int t;
 
-	i = p - 1; //시작 바로 왼쪽
+	i = p - 1; //시작 바로 왼족
 
 	pivot = A[r];
 
@@ -44,7 +44,7 @@ int quickSort(char* A, int p, int r) {
 	}
 }
 
-void find_number(char* A, char *new, int n) {
+void find_number(char* A, char* new, int n) {
 	int i, new_idx = 0;
 
 	for (i = 0; i < n; i++) {
@@ -60,7 +60,7 @@ void find_alphabet(char* A, char* new, int n) {
 	int i, new_idx = 0;
 
 	for (i = 0; i < n; i++) {
-		if ((A[i] >= 'A' && A[i] <= 'Z')|| (A[i] >= 'a' && A[i] <= 'z')) {
+		if ((A[i] >= 'A' && A[i] <= 'Z') || (A[i] >= 'a' && A[i] <= 'z')) {
 			new[new_idx++] = A[i];
 		}
 	}
@@ -70,7 +70,7 @@ void find_alphabet(char* A, char* new, int n) {
 
 int main() {
 	char str[500000];
-	char *num, *alph;
+	char* num, * alph;
 	int len;
 
 	scanf("%s", str);

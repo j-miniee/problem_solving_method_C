@@ -53,7 +53,7 @@ int main() {
 	check(m_arr, n_arr, m, n, &cnt);
 	printf("%d", cnt);
 
-	free(m_arr); 
+	free(m_arr);
 	free(n_arr);
 
 	return 0;
