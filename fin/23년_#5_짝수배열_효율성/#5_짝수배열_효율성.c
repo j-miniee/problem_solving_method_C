@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -25,7 +25,7 @@ void pick(int* card, int n, int limit, int len, int toPick, int* cnt) {
 		return;
 	}
 
-	lastIdx = len - toPick - 1; //°¡Àå ÃÖ±Ù¿¡ »ÌÈù ¼ö°¡ ÀúÀåµÈ À§Ä¡ÀÇ ÀÎµ¦½º
+	lastIdx = len - toPick - 1; //ê°€ì¥ ìµœê·¼ì— ë½‘íŒ ìˆ˜ê°€ ì €ì¥ëœ ìœ„ì¹˜ì˜ ì¸ë±ìŠ¤
 
 	if (len == toPick)
 		smallest = 1;

@@ -1,11 +1,11 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> //¹®ÀÚ¿­ ±æÀÌ**
+#include <string.h> //ë¬¸ìì—´ê¸¸ì´
 
 // 0~9 = 48~57, A~Z = 65~90, a~z = 97~122 
 /*
-	´ë¹®ÀÚ-¼Ò¹®ÀÚ-¼ıÀÚ
+	ëŒ€ë¬¸ì-ì†Œë¬¸ì-ìˆ«ì
 */
 void swap(char* arr, int i, int j) {
 	int  temp;
@@ -20,7 +20,7 @@ int partition(char A[], int p, int r) {
 	int pivot;
 	int t;
 
-	i = p - 1; //½ÃÀÛ ¹Ù·Î ¿ŞÁ·
+	i = p - 1; //ì‹œì‘ë°”ë¡œì™¼ìª½
 
 	pivot = A[r];
 
@@ -33,7 +33,7 @@ int partition(char A[], int p, int r) {
 	i++;
 	swap(A, i, j);
 
-	return i; //pivotÀÇ À§Ä¡¸¦ ¹İÈ¯ÇÔ
+	return i; //pivotì˜ ìœ„ì¹˜ë¥¼ ë°˜í™˜í•¨
 }
 
 int quickSort(char* A, int p, int r) {
@@ -52,7 +52,7 @@ void find_number(char* A, char* new, int n) {
 			new[new_idx++] = A[i];
 		}
 	}
-	new[new_idx] = '\0';//Áß¿ä
+	new[new_idx] = '\0';//ì¤‘ìš”
 	quickSort(new, 0, new_idx - 1);
 }
 
@@ -64,7 +64,7 @@ void find_alphabet(char* A, char* new, int n) {
 			new[new_idx++] = A[i];
 		}
 	}
-	new[new_idx] = '\0';//Áß¿ä
+	new[new_idx] = '\0';//ì¤‘ìš”
 	quickSort(new, 0, new_idx - 1);
 }
 
