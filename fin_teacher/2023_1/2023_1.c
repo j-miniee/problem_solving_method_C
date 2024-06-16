@@ -64,7 +64,7 @@ int main() {
 	for (i = 0; i < M; i++)
 		scanf("%d", &items_for_sale[i]);
 
-	quick_sort(items_for_sale, 0, M - 1);
+	quick_sort(items_for_sale, 0, M - 1); //파는 물건 정렬
 
 	scanf("%d", &N);
 	items_for_purchase = (int*)malloc(sizeof(int) * N);
@@ -72,7 +72,7 @@ int main() {
 	for (i = 0; i < N; i++) {
 		scanf("%d", &items_for_purchase[i]);
 		if (binary_search(items_for_sale, 0, M - 1, items_for_purchase[i]) != -1)
-			count++;
+			count++; //살 물건이 있으면 cnt++
 	}
 
 	printf("%d\n", count);

@@ -51,7 +51,7 @@ int partition(char* A, int p, int r) {
 
 	for (j = p; j < r; j++) {
 		//if(A[j] < pivot) {
-		if (compare(A[j], pivot) == 1) {
+		if (compare(A[j], pivot) == 1) { //문제 의미대로 작게되면 1을 return 함 
 			i++;
 			t = A[i];
 			A[i] = A[j];
