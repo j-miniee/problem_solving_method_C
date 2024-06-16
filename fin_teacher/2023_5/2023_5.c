@@ -1,96 +1,53 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-#define UPPERCASE	0
-#define LOWERCASE	1
-#define NUMERICCASE	2
+void pick(int* items, int n, int* bucket, int m, int toPick, int even_number, int* count, int L) {
+	int i, lastIndex, smallest, currentItem;
 
-int type_char(char ch) {
-	if (ch >= 'A' && ch <= 'Z')
-		return UPPERCASE;
-	else if (ch >= 'a' && ch <= 'z')
-		return LOWERCASE;
-	else if (ch >= '0' && ch <= '9')
-		return NUMERICCASE;
-	return -1; //error
-}
+	if (toPick + even_number < L)
+		return;
 
-int compare(char a, char b) {
-	//if a < b -> 1
-	//else 0
-	int a_type, b_type;
+	if (toPick == 0) {
+		//count[0] = count[0] + 1;
+		*count = *count + 1;
+		return;
+	}
 
-	a_type = type_char(a);
-	b_type = type_char(b);
+	lastIndex = m - toPick - 1;
+	if (m == toPick)
+		smallest = 0;
+	else
+		smallest = bucket[lastIndex] + 1;
 
-	if (a_type == b_type) {
-		if (a < b)
-			return 1;
+	for (i = smallest; i < n; i++) {
+		bucket[lastIndex + 1] = i;
+		currentItem = items[i];
+		if (currentItem % 2 == 0)
+			pick(items, n, bucket, m, toPick - 1, even_number + 1, count, L);
 		else
-			return 0;
-	}
-	else {
-		if (a_type < b_type)
-			return 1;
-		else
-			return 0;
-	}
-}
-
-int partition(char* A, int p, int r) {
-	int i, j;
-	//int pivot;
-	char pivot;
-	int t;
-
-	i = p - 1;
-	j = p;
-
-	pivot = A[r];
-
-	for (j = p; j < r; j++) {
-		//if(A[j] < pivot) {
-		if (compare(A[j], pivot) == 1) {
-			i++;
-			t = A[i];
-			A[i] = A[j];
-			A[j] = t;
-		}
-	}
-	i++;
-	t = A[i];
-	A[i] = A[r];
-	A[r] = t;
-
-	return i;
-}
-
-void quick_sort(char* A, int p, int r) {
-	if (p < r) {
-		int q = partition(A, p, r);
-		quick_sort(A, p, q - 1);
-		quick_sort(A, q + 1, r);
+			pick(items, n, bucket, m, toPick - 1, even_number, count, L);
 	}
 }
 
 int main() {
-	int len, i;
-	int MAX_LEN = 500000;
-	char* str_to_sort;
+	int N, M, L, i;
+	int* bucket, * items;
+	int count = 0;
 
-	str_to_sort = (char*)malloc(sizeof(char) * MAX_LEN);
-	for (i = 0; i < MAX_LEN; i++)
-		str_to_sort[i] = '\0';
+	scanf("%d", &N);
+	scanf("%d", &M);
+	scanf("%d", &L);
 
-	scanf("%s", str_to_sort);
+	items = (int*)malloc(sizeof(int) * N);
+	bucket = (int*)malloc(sizeof(int) * M);
 
-	len = strlen(str_to_sort);
+	for (i = 0; i < N; i++)
+		items[i] = i + 1;
 
-	quick_sort(str_to_sort, 0, len - 1);
+	pick(items, N, bucket, M, M, 0, &count, L);
+	printf("%d\n", count);
 
-	printf("%s\n", str_to_sort);
-
-	free(str_to_sort);
+	free(bucket);
+	free(items);
 	return 0;
 }
